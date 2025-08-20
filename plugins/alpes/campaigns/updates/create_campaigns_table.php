@@ -18,6 +18,7 @@ class CreateCampaignsTable extends Migration
             $table->json('section2')->nullable();
             $table->json('section3')->nullable();
             $table->json('footer')->nullable();
+            $table->json('brand')->nullable();
             $table->timestamps();
         });
     }

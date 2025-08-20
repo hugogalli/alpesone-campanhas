@@ -1,17 +1,103 @@
-        <!-- Scripts -->
-        <script src="{{ [
-            '@jquery',
-            '@framework',
-            '@framework.extras',
+{# =========================
+   FOOTER GLOBAL
+   ========================= #}
+<footer class="w-full border-t border-gray-200 bg-gray-50">
+  <div class="container mx-auto px-4 py-12 md:py-16">
 
-            'assets/js/app.js',
-        ] | theme }}"></script>
-        {% scripts %}
+    {# Cabeçalho do contato #}
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h3 class="text-2xl md:text-3xl font-semibold text-gray-900">
+        Interessou?
+      </h3>
+      <p class="text-lg text-gray-700">
+        Entre em contato com a gente.
+      </p>
+    </div>
 
-        {% flash %}
-            <p data-control="flash-message" data-interval="7" class="flashmessage {{ type }}">
-                {{ message }}
-            </p>
-        {% endflash %}
-    </body>
-</html>
+    {# Formulário #}
+    <form class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div>
+          <label for="nome" class="block text-sm font-medium text-gray-700">Nome*</label>
+          <input type="text" id="nome" placeholder="Digite aqui seu nome"
+                 class="mt-1 block w-full border-0 border-b border-gray-300 bg-transparent focus:ring-0 focus:border-gray-800"/>
+        </div>
+
+        <div>
+          <label for="sobrenome" class="block text-sm font-medium text-gray-700">Sobrenome*</label>
+          <input type="text" id="sobrenome" placeholder="Digite aqui seu sobrenome"
+                 class="mt-1 block w-full border-0 border-b border-gray-300 bg-transparent focus:ring-0 focus:border-gray-800"/>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">E-mail*</label>
+          <input type="email" id="email" placeholder="Digite aqui seu e-mail"
+                 class="mt-1 block w-full border-0 border-b border-gray-300 bg-transparent focus:ring-0 focus:border-gray-800"/>
+        </div>
+
+        <div>
+          <label for="cpf" class="block text-sm font-medium text-gray-700">CPF/CNPJ*</label>
+          <input type="text" id="cpf" placeholder="Informe seu CPF ou CNPJ"
+                 class="mt-1 block w-full border-0 border-b border-gray-300 bg-transparent focus:ring-0 focus:border-gray-800"/>
+        </div>
+
+        <div>
+          <label for="tipoTelefone" class="block text-sm font-medium text-gray-700">Tipo do Telefone*</label>
+          <select id="tipoTelefone"
+                  class="mt-1 block w-full border-0 border-b border-gray-300 bg-transparent focus:ring-0 focus:border-gray-800">
+            <option>Celular</option>
+            <option>Residencial</option>
+            <option>Comercial</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="telefone" class="block text-sm font-medium text-gray-700">DDD + Telefone*</label>
+          <input type="tel" id="telefone" placeholder="Ex.: (11) 1234-5678"
+                 class="mt-1 block w-full border-0 border-b border-gray-300 bg-transparent focus:ring-0 focus:border-gray-800"/>
+        </div>
+      </div>
+
+      {# Preferências #}
+      <div class="mt-6 space-y-4">
+        <fieldset>
+          <legend class="text-sm font-medium text-gray-700">Preferência de contato*</legend>
+          <div class="mt-2 flex gap-6">
+            <label class="flex items-center gap-2 text-sm text-gray-700">
+              <input type="checkbox" class="rounded border-gray-300"> Telefone
+            </label>
+            <label class="flex items-center gap-2 text-sm text-gray-700">
+              <input type="checkbox" class="rounded border-gray-300"> E-mail
+            </label>
+            <label class="flex items-center gap-2 text-sm text-gray-700">
+              <input type="checkbox" class="rounded border-gray-300"> WhatsApp
+            </label>
+          </div>
+        </fieldset>
+
+        <label class="flex items-start gap-2 text-xs text-gray-600">
+          <input type="checkbox" class="mt-1 rounded border-gray-300">
+          <span>Aceito a <a href="#" class="underline">Política de Privacidade</a></span>
+        </label>
+      </div>
+
+      {# Botão #}
+      <div class="mt-8 text-center">
+        <button type="submit"
+                class="px-10 py-3 bg-[#001E50] text-white rounded-full font-medium shadow hover:opacity-90 transition">
+          Enviar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  {# Rodapé institucional #}
+  <div class="border-t border-gray-200 bg-white">
+    <div class="container mx-auto px-4 py-6 text-center">
+      <p class="text-sm text-gray-600">
+        © {{ "now"|date("Y") }} Sua Empresa. Todos os direitos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

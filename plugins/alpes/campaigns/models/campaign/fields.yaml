@@ -33,16 +33,6 @@ tabs:
       span: right
       tab: SEO
 
-    section1[title]:
-      label: Título
-      type: text
-      span: left
-      tab: Seção 1
-    section1[subtitle]:
-      label: Subtítulo
-      type: text
-      span: right
-      tab: Seção 1
     section1[banner_desktop]:
       label: Banner Desktop
       type: fileupload
@@ -54,16 +44,6 @@ tabs:
       mode: image
       tab: Seção 1
 
-    section2[title]:
-      label: Título
-      type: text
-      span: left
-      tab: Seção 2
-    section2[subtitle]:
-      label: Subtítulo
-      type: text
-      span: right
-      tab: Seção 2
     section2[gallery]:
       label: Galeria de Imagens
       type: repeater
@@ -76,7 +56,7 @@ tabs:
             type: fileupload
             mode: image
           alt:
-            label: Alt
+            label: Legenda
             type: text
 
     section3[highlights]:
