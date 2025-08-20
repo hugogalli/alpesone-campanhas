@@ -1,114 +1,218 @@
-<p align="center">
-    <img src="https://github.com/wintercms/winter/raw/develop/.github/assets/Github%20Banner.png?raw=true" alt="Winter CMS Logo" width="100%" />
-</p>
+# Alpes One – Campanhas (WinterCMS)
 
-[Winter](https://wintercms.com) is a free, open-source content management system based on the [Laravel](https://laravel.com) PHP framework. Developers and agencies all around the world rely upon Winter for its quick prototyping and development, safe and secure codebase and dedication to simplicity.
+Repositório do **plugin + tema** para criação de landing pages de campanhas com **header/footer padronizados**, **galeria/carrossel**, **destaques** e **formulário de cotação** no banner. Projeto montado para avaliação sênior: organização por componentes, partials, assets estáticos e formulários no backend (WinterCMS).
 
-No matter how large or small your project is, Winter provides a rich development environment, regardless of your level of experience.
+---
 
-[![Version](https://img.shields.io/github/v/release/wintercms/winter?sort=semver&style=flat-square)](https://github.com/wintercms/winter/releases)
-[![Tests](https://img.shields.io/github/actions/workflow/status/wintercms/winter/tests.yml?branch=develop&label=tests&style=flat-square)](https://github.com/wintercms/winter/actions)
-[![License](https://img.shields.io/github/license/wintercms/winter?label=open%20source&style=flat-square)](https://packagist.org/packages/wintercms/winter)
-[![Discord](https://img.shields.io/badge/discord-join-purple?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/D5MFSPH6Ux)
+## Sumário
+- [Stack](#stack)
+- [Requisitos](#requisitos)
+- [Instalação](#instalação)
+- [Execução](#execução)
+- [Como usar (fluxo de campanha)](#como-usar-fluxo-de-campanha)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Personalização (onde editar)](#personalização-onde-editar)
+- [Scripts úteis](#scripts-úteis)
+- [Boas práticas e convenções](#boas-práticas-e-convenções)
+- [Licença](#licença)
 
-## Installing Winter
+---
 
-Winter can be installed in several ways for both new users and experienced developers - see our [Installation page](https://wintercms.com/install) for more information.
+## Stack
+- **PHP 8.1+**
+- **WinterCMS** (baseado em Laravel)
+- **Composer**
+- **SQLite** (dev) ou **MySQL/MariaDB** (prod)
+- **Tailwind (CDN)** para o front rápido
+- **Twig** (templates/partials)
+- **YAML** (configuração de forms e listas no backend)
 
-### Quick start with Composer
+---
 
-For advanced users, run the following command in your terminal to install Winter via Composer:
+## Requisitos
+- PHP 8.1+ com extensões:
+  - `mbstring`, `pdo`, `pdo_sqlite` (ou `pdo_mysql`), `openssl`, `json`, `curl`, **`gd`**
+- Composer instalado e no `PATH` (Windows)
 
-```shell
-composer create-project wintercms/winter example.com "dev-develop"
-```
+---
 
-Run the following command with the folder created by the previous command to generate an environment file which will contain your configuration settings:
+## Instalação
 
-```shell
-php artisan winter:env
-```
+```bash
+# 1) Clonar
+git clone https://github.com/hugogalli/alpesone-campanhas.git
+cd alpesone-campanhas
 
-After configuring your installation, you can run the following command to run the database migrations and automatically create an administrator account with the username `admin`. The password of this account will be automatically generated and displayed in your terminal.
+# 2) Dependências PHP
+composer install
 
-```shell
+# 3) Ambiente
+cp .env.example .env
+# Edite .env:
+# - APP_URL=http://localhost:8000
+# - DB_CONNECTION=sqlite
+# - DB_DATABASE=database/database.sqlite   (crie o arquivo vazio)
+mkdir -p database && type NUL > database/database.sqlite  # (Windows)
+# ou: touch database/database.sqlite                       # (Linux/Mac)
+
+# 4) Chave da app
+php artisan key:generate
+
+# 5) Migrações de Winter e do plugin
 php artisan winter:up
+# se estiver iterando no plugin:
+# php artisan plugin:refresh Alpes.Campaigns
+
+# 6) Usuário do backend (se ainda não existir)
+php artisan backend:user
+# siga o prompt (email, senha, etc.)
 ```
 
-## Learning Winter
+---
 
-The best place to learn Winter is by [reading the documentation](https://wintercms.com/docs) or [following some tutorials](https://wintercms.com/blog/category/tutorials). You can also join the maintenance team and our active community on [Discord](https://discord.gg/D5MFSPH6Ux) who are always willing to help out with questions.
+## Execução
 
-## Development team
+```bash
+php artisan serve
+# acesse: http://localhost:8000
 
-Winter was forked from October CMS in March 2021 due to a difference in open source management philosophies between the core maintainer team and the two founders of October.
+# Backend (painel administrativo):
+# http://localhost:8000/backend
+```
 
-The development of Winter is lead by [Luke Towers](https://luketowers.ca/), along with many wonderful people that dedicate their time to help support and grow the community. The [Frostbyte Foundation](mailto:hello@frostbytefoundation.org) provides an organisational backing for the project and the continued development of Winter, its plugins and themes and its ecosystem.
+Login com o usuário criado via `php artisan backend:user`.
 
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/luketowers"><img src="https://avatars.githubusercontent.com/u/7253840?v=3" width="100px;" alt="Luke Towers"/><br /><sub><b>Luke Towers</b></sub></a></td>
-    <td align="center"><a href="https://github.com/bennothommo"><img src="https://avatars.githubusercontent.com/u/15900351?v=3" width="100px;" alt="Ben Thomson"/><br /><sub><b>Ben Thomson</b></sub></a></td>
-    <td align="center"><a href="https://github.com/mjauvin"><img src="https://avatars.githubusercontent.com/u/2013630?v=3" width="100px;" alt="Marc Jauvin"/><br /><sub><b>Marc Jauvin</b></sub></a></td>
-    <td align="center"><a href="https://github.com/jaxwilko"><img src="https://avatars.githubusercontent.com/u/31214002?v=4" width="100px;" alt="Jack Wilkinson"/><br /><sub><b>Jack Wilkinson</b></sub></a></td>
-  </tr>
-</table>
+---
 
-## Foundation library
+## Como usar (fluxo de campanha)
 
-Winter is built on top of the wildly-popular [Laravel](https://laravel.com) framework for PHP, with the in-house [Storm](https://github.com/wintercms/storm) library as a buffer between the Laravel framework and the Winter project, to minimize breaking changes and improve stability.
+1. **Crie/edite uma Campanha** no backend:
+   - Menu **Campanhas** → **Nova Campanha**
+   - Campos:
+     - **Geral**: `name`, `slug`, `is_active`, `meta_title`, `meta_description`
+     - **Branding**: `brand[logo]` (logo opcional por campanha; se vazio, cai na logo padrão do tema)
+     - **Seção 1 (Banner)**: título, subtítulo, `banner_desktop`, `banner_mobile`
+     - **Seção 2 (Galeria)**: título, subtítulo, **repeater** de imagens com **Legenda** (aparece como caption do slide)
+     - **Seção 3 (Destaques)**: até **3** destaques (repeater limitado) com imagem, título e descrição
+2. **Página pública**: acessa via `/:slug` (ex.: `http://localhost:8000/primeira-campanha`)
+3. **Header/Footer**: são **globais** no tema. A logo do header usa a da campanha (se houver) ou a **padrão** do tema.
 
-## Getting in touch
+---
 
-You can get in touch with the maintainer team using the following mediums:
+## Estrutura do projeto
 
-* [Follow us on Twitter](https://twitter.com/usewintercms) for announcements and updates.
-* [Join us on Discord](https://discord.gg/D5MFSPH6Ux) to chat with us.
+```
+alpesone-campanhas/
+├─ app/                  # app Laravel/Winter
+├─ modules/              # módulos do WinterCMS
+├─ plugins/
+│  └─ alpes/campaigns/
+│     ├─ Plugin.php
+│     ├─ updates/
+│     │  ├─ create_campaigns_table.php
+│     │  └─ version.yaml
+│     ├─ models/
+│     │  └─ campaign/
+│     │     ├─ columns.yaml
+│     │     └─ fields.yaml
+│     ├─ controllers/
+│     │  └─ campaigns/
+│     │     ├─ Campaigns.php
+│     │     ├─ config_form.yaml
+│     │     ├─ config_list.yaml
+│     │     └─ _list_toolbar.htm
+│     ├─ components/
+│     │  └─ campaignpage/
+│     │     ├─ CampaignPage.php
+│     │     ├─ default.htm          # só inclui partials
+│     │     ├─ banner.htm
+│     │     ├─ gallery.htm
+│     │     └─ highlights.htm
+│     └─ assets/
+│        ├─ css/campaign.css
+│        └─ js/campaign.js
+└─ themes/
+   └─ seu_tema/
+      ├─ layouts/default.htm        # inclui {% styles %} e {% scripts %}
+      ├─ partials/site/header.htm   # logo dinâmica (campanha ou padrão)
+      └─ partials/site/footer.htm   # formulário de contato global + copyright
+```
 
-## Contributing
+---
 
-Before contributing issues or pull requests, be sure to review the [Contributing Guidelines](https://github.com/wintercms/.github/blob/master/CONTRIBUTING.md) first.
+## Personalização (onde editar)
 
-### Coding standards
+### Backend (formularios/colunas)
+- `plugins/alpes/campaigns/models/campaign/fields.yaml`: adiciona/edita campos do form
+- `plugins/alpes/campaigns/models/campaign/columns.yaml`: colunas da listagem
+- `plugins/alpes/campaigns/controllers/campaigns/config_form.yaml`: configuração do FormController
+- `plugins/alpes/campaigns/controllers/campaigns/config_list.yaml`: configuração da lista
 
-Please follow the following guides and code standards:
+### Frontend (páginas/partials/estilo)
+- **Componente da campanha**:
+  - `components/campaignpage/banner.htm`: banner + título/subtítulo + formulário do banner (desktop-only)
+  - `components/campaignpage/gallery.htm`: carrossel com legendas e CTA
+  - `components/campaignpage/highlights.htm`: destaques verticais alternando layout (imagem/texto)
+  - `assets/css/campaign.css`: utilitários (sombra, botão padrão, inputs sublinhados, botões do carrossel)
+  - `assets/js/campaign.js`: inicialização do carrossel via atributos `data-`
+- **Tema**:
+  - `themes/seu_tema/layouts/default.htm`: **obrigatório** conter `{% styles %}` no `<head>` e `{% scripts %}` antes de `</body>`
+  - `themes/seu_tema/partials/site/header.htm`: header global; usa `campaign.brand.logo` ou `assets/images/logo-default.svg`
+  - `themes/seu_tema/partials/site/footer.htm`: footer global com formulário leve e copyright
 
-* [PSR 4 Coding Standards](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
-* [PSR 2 Coding Style Guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
-* [PSR 1 Coding Standards](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
+### Ativação dos assets do plugin
+No `CampaignPage.php` (componente), em `onRun()`:
+```php
+$this->addCss('/plugins/alpes/campaigns/assets/css/campaign.css');
+$this->addJs('/plugins/alpes/campaigns/assets/js/campaign.js');
+```
+E **no layout** do tema:
+```twig
+{% styles %}     {# dentro do <head> #}
+...
+{% scripts %}    {# antes de </body> #}
+```
 
-### Code of conduct
+---
 
-In order to ensure that the Winter community is welcoming to all, please review and abide by the [Code of Conduct](https://github.com/wintercms/.github/blob/master/CODE_OF_CONDUCT.md).
+## Scripts úteis
 
-## Sponsors
+```bash
+# Reaplicar migrations do plugin (bom para desenvolvimento)
+php artisan plugin:refresh Alpes.Campaigns
 
-Winter CMS development is financially supported by the generosity of the following sponsors. If you would like to have your name, company and link added to this list and support open-source development, feel free to make a donation to our [Open Collective](https://opencollective.com/wintercms).
+# Subir tudo (Winter + plugins)
+php artisan winter:up
 
-### Organizations
+# Limpar caches
+php artisan cache:clear
+php artisan config:clear
+composer dump-autoload
 
-<a href="https://laravel.com/?ref=wintercms" target="_blank">
-    <img src="https://raw.githubusercontent.com/laravel/art/refs/heads/master/logo-type/5%20svg/3%20RGB/1%20Full%20Color/laravel-logotype-rgb-red.svg" alt="Laravel logo" width="300">
-</a>
+# Criar/editar usuário do backend
+php artisan backend:user
+```
 
-Laravel provides [Laravel Vapor](https://vapor.laravel.com/?ref=wintercms) to the Winter CMS project which is used to power the serverless PHP hosting used for our [main website and documentation](https://wintercms.com/). 
+---
 
-<a href="https://froala.com/wysiwyg-editor/" target="_blank">
-    <img src="https://froala.com/wp-content/uploads/2019/10/froala.svg" alt="Froala logo" width="300">
-</a>
+## Boas práticas e convenções
 
-Froala provides a perpetual, Enterprise license to Winter CMS which allows us and our users to use the Froala WYSIWYG Editor in Winter CMS powered projects.
+- **Campos JSON** (`section1`, `section2`, `section3`, `brand`) são `text` no banco e mapeados via `$jsonable` no Model → compatível com SQLite/MySQL.
+- **Máximo de 3 destaques** controlado no `repeater` (campo `maxItems: 3`).
+- **Carrossel sem libs**: `data-carousel`, `[data-track]`, `[data-prev]/[data-next]` e `data-caption`.
+- **Layout limpo**: banner/gallery/highlights separados em **partials**, `default.htm` só orquestra.
+- **Tailwind via CDN**: reduz atrito de build no teste técnico; em produção, migrar para build dedicado.
+- **Header/Footer globais**: campanhas só trocam a **logo** se quiserem; existe **logo padrão** no tema.
 
-### Individuals
+---
 
-Big thanks to our sponsors on OpenCollective:
+**Resetar migrations do plugin**
+```bash
+php artisan plugin:refresh Alpes.Campaigns
+```
 
-- Orville
+---
 
-## License
-
-The Winter platform is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## Security vulnerabilities
-
-Please review [our security policy](https://github.com/wintercms/winter/security/policy) on how to report security vulnerabilities.
+## Licença
+Este projeto é disponibilizado apenas para avaliação técnica.  
+Para uso comercial/derivações, alinhar termos previamente.
