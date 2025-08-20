@@ -1,0 +1,129 @@
+{% set c = c %}
+
+<section class="relative w-full overflow-hidden bg-[#0b2c5a]">
+  <picture>
+    {% if c.section1.banner_mobile %}
+      <source media="(max-width: 768px)" srcset="{{ c.section1.banner_mobile|media }}">
+    {% endif %}
+    {% if c.section1.banner_desktop %}
+      <img src="{{ c.section1.banner_desktop|media }}"
+           alt="{{ c.section1.title ?? '' }}"
+           class="w-full h-[72vh] md:h-[80vh] object-cover opacity-90" />
+    {% else %}
+      <div class="w-full h-[72vh] md:h-[80vh] bg-[#0b2c5a]"></div>
+    {% endif %}
+  </picture>
+
+  <div class="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-transparent"></div>
+
+  <div class="absolute inset-0">
+    <div class="container mx-auto h-full px-4">
+      <div class="grid grid-cols-12 gap-6 items-start h-full">
+
+        <div class="col-span-12 md:col-span-6 lg:col-span-5 mt-12 md:mt-20">
+          {% if c.section1.title or c.section1.subtitle %}
+          <div class="inline-block bg-black/35 backdrop-blur-[2px] px-5 py-4 rounded-md shadow-lg">
+            {% if c.section1.title %}
+              <h1 class="text-white font-extrabold leading-tight"
+                  style="font-size:clamp(22px, 6vw, 48px); line-height:1.1;">
+                {{ c.section1.title }}
+              </h1>
+            {% endif %}
+            {% if c.section1.subtitle %}
+              <p class="text-white/90" style="font-size:clamp(14px, 3.5vw, 20px);">
+                {{ c.section1.subtitle }}
+              </p>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="hidden md:block md:col-span-2 lg:col-span-3"></div>
+
+        <div class="hidden md:block md:col-span-3 lg:col-span-3 mt-12 md:mt-10">
+            <div class="bg-white/95 rounded-lg shadow-md p-5 max-w-xs mx-auto text-sm">
+                <h3 class="text-gray-900 text-base font-medium mb-3">
+                Solicite <span class="font-semibold">uma Cotação</span>
+                </h3>
+
+                <form class="space-y-2.5" action="javascript:void(0);" aria-label="Formulário de cotação">
+                <div>
+                    <label class="block text-xs text-gray-600">Nome</label>
+                    <input type="text" placeholder="Digite seu nome"
+                        class="input-underline text-sm py-1.5" />
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-600">E-mail</label>
+                    <input type="email" placeholder="Digite seu e-mail"
+                        class="input-underline text-sm py-1.5" />
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-600">Telefone</label>
+                    <input type="tel" placeholder="(DDD) 00000-0000"
+                        class="input-underline text-sm py-1.5" />
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                    <label class="block text-xs text-gray-600">Estado</label>
+                    <select class="input-underline text-sm py-1.5">
+                        <option selected disabled>Selecionar</option>
+                        <option>SP</option><option>RJ</option><option>MG</option>
+                    </select>
+                    </div>
+                    <div>
+                    <label class="block text-xs text-gray-600">Cidade</label>
+                    <select class="input-underline text-sm py-1.5">
+                        <option selected disabled>Selecionar</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-600">Unidade</label>
+                    <select class="input-underline text-sm py-1.5">
+                    <option selected disabled>Selecionar</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-600">Modelo</label>
+                    <select class="input-underline text-sm py-1.5">
+                    <option selected disabled>{{ c.section1.title ?? 'Selecionar' }}</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-600">Mensagem</label>
+                    <textarea rows="2" placeholder="Escreva sua mensagem"
+                            class="input-underline text-sm py-1.5 resize-none"></textarea>
+                </div>
+
+                <div class="pt-1">
+                    <p class="text-xs text-gray-600 mb-1">Quero receber contato por:</p>
+                    <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-700">
+                    <label class="inline-flex items-center gap-1.5"><input type="checkbox" class="rounded border-gray-300"> Telefone</label>
+                    <label class="inline-flex items-center gap-1.5"><input type="checkbox" class="rounded border-gray-300"> E-mail</label>
+                    <label class="inline-flex items-center gap-1.5"><input type="checkbox" class="rounded border-gray-300"> WhatsApp</label>
+                    </div>
+                </div>
+
+                <label class="flex items-start gap-1.5 text-[11px] text-gray-500">
+                    <input type="checkbox" class="mt-0.5 rounded border-gray-300">
+                    <span>Aceito a <a href="#" class="underline">Política de Privacidade</a></span>
+                </label>
+
+                <button type="submit" class="btn-primary w-full py-2 text-sm font-medium">
+                    Enviar
+                </button>
+                </form>
+            </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>

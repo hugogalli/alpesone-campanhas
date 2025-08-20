@@ -1,0 +1,44 @@
+/* sombra do card do hero */
+.shadow-hero-card { box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+
+/* inputs sublinhados padrão */
+.input-underline {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #d1d5db; /* gray-300 */
+  background: transparent;
+  padding: .375rem .0;
+  outline: none;
+}
+.input-underline:focus { border-bottom-color: #111827; } /* gray-900 */
+
+/* botão primário padrão */
+.btn-primary {
+  display: inline-block;
+  border-radius: 9999px;
+  background: #0b2c5a;
+  color: #fff;
+  padding: .75rem 2rem;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  transition: opacity .2s ease;
+}
+.btn-primary:hover { opacity: .95; }
+
+/* botões do carrossel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 9999px;
+  background: #fff;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border: 1px solid rgba(0,0,0,.05);
+  line-height: 1;
+}

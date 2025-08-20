@@ -7,6 +7,7 @@ description = "Layout padrão"
   <title>{{ this.page.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.tailwindcss.com"></script>
+  {% styles %} 
 </head>
 <body class="min-h-screen flex flex-col bg-white text-gray-900">
 
@@ -17,6 +18,7 @@ description = "Layout padrão"
   </main>
 
   {% partial 'site/footer' %}
-
+  {% scripts %}
 </body>
 </html>
+
