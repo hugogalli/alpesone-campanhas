@@ -132,7 +132,7 @@ alpesone-campanhas/
 │        ├─ css/campaign.css
 │        └─ js/campaign.js
 └─ themes/
-   └─ seu_tema/
+   └─ alpesone/
       ├─ layouts/default.htm        # inclui {% styles %} e {% scripts %}
       ├─ partials/site/header.htm   # logo dinâmica (campanha ou padrão)
       └─ partials/site/footer.htm   # formulário de contato global + copyright
