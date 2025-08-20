@@ -1,0 +1,9 @@
+name: 'Alpes One'
+description: 'Tema para campanhas Alpes One'
+author: 'Hugo Galli'
+homepage: 'http://127.0.0.1:8000/'
+code: alpes-one
+form:
+    fields:
+        googleanalytics_id:
+            label: 'Google Analytics ID'

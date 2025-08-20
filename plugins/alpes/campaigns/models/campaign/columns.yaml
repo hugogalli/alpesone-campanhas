@@ -1,0 +1,12 @@
+columns:
+  name:
+    label: Nome
+    searchable: true
+  slug:
+    label: Slug
+  is_active:
+    label: Ativa
+    type: switch
+  created_at:
+    label: Criada em
+    type: datetime

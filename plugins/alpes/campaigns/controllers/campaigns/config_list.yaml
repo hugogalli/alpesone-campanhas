@@ -1,0 +1,7 @@
+modelClass: Alpes\Campaigns\Models\Campaign
+list: $/alpes/campaigns/models/campaign/columns.yaml
+recordUrl: alpes/campaigns/campaigns/update/:id
+noRecordsMessage: Nenhuma campanha
+
+toolbar:
+  buttons: list_toolbar

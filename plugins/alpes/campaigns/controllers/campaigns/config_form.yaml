@@ -1,0 +1,120 @@
+name: Campanha
+modelClass: Alpes\Campaigns\Models\Campaign
+defaultRedirect: alpes/campaigns/campaigns
+
+form:
+  fields:
+    name:
+      label: Nome
+      type: text
+      span: left
+      required: true
+    slug:
+      label: Slug
+      type: text
+      span: right
+      preset:
+        field: name
+        type: slug
+
+    is_active:
+      label: Ativa
+      type: switch
+      default: true
+      span: left
+      tab: Geral
+    meta_title:
+      label: Meta Title
+      type: text
+      span: left
+      tab: SEO
+    meta_description:
+      label: Meta Description
+      type: textarea
+      span: right
+      tab: SEO
+
+    section1[title]:
+      label: Título
+      type: text
+      span: left
+      tab: Seção 1
+    section1[subtitle]:
+      label: Subtítulo
+      type: text
+      span: right
+      tab: Seção 1
+    section1[banner_desktop]:
+      label: Banner Desktop
+      type: mediafinder
+      mode: image
+      tab: Seção 1
+    section1[banner_mobile]:
+      label: Banner Mobile
+      type: mediafinder
+      mode: image
+      tab: Seção 1
+
+    section2[title]:
+      label: Título
+      type: text
+      span: left
+      tab: Seção 2
+    section2[subtitle]:
+      label: Subtítulo
+      type: text
+      span: right
+      tab: Seção 2
+    section2[gallery]:
+      label: Galeria de Imagens
+      type: repeater
+      prompt: Adicionar imagem
+      tab: Seção 2
+      form:
+        fields:
+          image:
+            label: Imagem
+            type: mediafinder
+            mode: image
+          alt:
+            label: Alt
+            type: text
+
+    section3[highlights]:
+      label: Destaques
+      type: repeater
+      prompt: Adicionar destaque
+      maxItems: 3
+      tab: Seção 3
+      form:
+        fields:
+          title:
+            label: Título
+            type: text
+          description:
+            label: Descrição
+            type: textarea
+          image:
+            label: Imagem
+            type: mediafinder
+            mode: image
+
+    footer[title]:
+      label: Título
+      type: text
+      tab: Footer
+    footer[image]:
+      label: Imagem
+      type: mediafinder
+      mode: image
+      tab: Footer
+
+create:
+  title: Nova Campanha
+  redirect: alpes/campaigns/campaigns/update/:id
+  redirectClose: alpes/campaigns/campaigns
+
+update:
+  title: Editar Campanha
+  redirect: alpes/campaigns/campaigns
+  redirectClose: alpes/campaigns/campaigns

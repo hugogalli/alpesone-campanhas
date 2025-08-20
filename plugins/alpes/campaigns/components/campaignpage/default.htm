@@ -1,0 +1,42 @@
+{% set c = campaign %}
+
+<section id="s1">
+  {% if c.section1.banner_desktop %}
+    <img src="{{ c.section1.banner_desktop|media }}" alt="{{ c.section1.title }}">
+  {% endif %}
+  <h1>{{ c.section1.title }}</h1>
+  <p>{{ c.section1.subtitle }}</p>
+</section>
+
+<section id="s2">
+  <h2>{{ c.section2.title }}</h2>
+  <p>{{ c.section2.subtitle }}</p>
+  <div class="galeria">
+    {% for item in c.section2.gallery %}
+      {% if item.image %}
+        <img src="{{ item.image|media }}" alt="{{ item.alt }}">
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section id="s3">
+  <div class="destaques">
+    {% for h in c.section3.highlights %}
+      <article>
+        {% if h.image %}
+          <img src="{{ h.image|media }}" alt="{{ h.title }}">
+        {% endif %}
+        <h3>{{ h.title }}</h3>
+        <p>{{ h.description }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<footer>
+  <h4>{{ c.footer.title }}</h4>
+  {% if c.footer.image %}
+    <img src="{{ c.footer.image|media }}" alt="{{ c.footer.title }}">
+  {% endif %}
+</footer>
