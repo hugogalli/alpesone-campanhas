@@ -11,7 +11,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'Campanhas',
             'description' => 'Plugin para criar e exibir campanhas com seções.',
-            'author'      => 'Alpes',
+            'author'      => 'Hugo Galli',
             'icon'        => 'icon-bullhorn'
         ];
     }

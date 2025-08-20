@@ -31,16 +31,16 @@ form:
     meta_description:
       label: Meta Description
       type: textarea
-      span: right
+      span: left
       tab: SEO
 
     section1[title]:
-      label: Título
+      label: Título do Banner
       type: text
       span: left
       tab: Seção 1
     section1[subtitle]:
-      label: Subtítulo
+      label: Subtítulo do Banner
       type: text
       span: right
       tab: Seção 1
@@ -50,18 +50,18 @@ form:
       mode: image
       tab: Seção 1
     section1[banner_mobile]:
-      label: Banner Mobile
+      label: Banner Mobile (Caso nulo, usaremos o banner desktop)
       type: mediafinder
       mode: image
       tab: Seção 1
 
     section2[title]:
-      label: Título
+      label: Título da Galeria de Imagens
       type: text
       span: left
       tab: Seção 2
     section2[subtitle]:
-      label: Subtítulo
+      label: Subtítulo da Galeria de Imagens
       type: text
       span: right
       tab: Seção 2
@@ -77,11 +77,11 @@ form:
             type: mediafinder
             mode: image
           alt:
-            label: Legenda
+            label: Legenda da imagem (Descrição)
             type: text
 
     section3[highlights]:
-      label: Destaques
+      label: Destaques (Maximo 3)
       type: repeater
       prompt: Adicionar destaque
       maxItems: 3
@@ -89,10 +89,10 @@ form:
       form:
         fields:
           title:
-            label: Título
+            label: Título do destaque
             type: text
           description:
-            label: Descrição
+            label: Descrição do destaque
             type: textarea
           image:
             label: Imagem
@@ -100,17 +100,17 @@ form:
             mode: image
 
     footer[title]:
-      label: Título
+      label: Título do footer
       type: text
       tab: Footer
     footer[image]:
-      label: Imagem
+      label: Imagem do footer
       type: mediafinder
       mode: image
       tab: Footer
 
     brand[logo]:
-      label: Logo da campanha
+      label: Logo da campanha (Usaremos a logo padrão caso nulo)
       type: mediafinder
       mode: image
       span: left
