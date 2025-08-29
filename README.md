@@ -1,4 +1,4 @@
-# Alpes One – Campanhas (WinterCMS)
+# Plugin criador de site de Campanhas (WinterCMS)
 
 Repositório do **plugin + tema** para criação de landing pages de campanhas com **header/footer padronizados**, **galeria/carrossel**, **destaques** e **formulário de cotação** no banner. Projeto montado para avaliação sênior: organização por componentes, partials, assets estáticos e formulários no backend (WinterCMS).
 
